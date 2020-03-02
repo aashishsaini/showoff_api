@@ -9,13 +9,13 @@ class Widget
     if id
       url = "#{BASE_URL}/api/v1/users/#{id}/widgets?client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}"
       headers = {'Authorization': "Bearer #{bearer}"}
-    end
+    end if bearer
 
     # get logged in user widget
     if my_view
       url = "#{BASE_URL}/api/v1/widgets"
       headers = {'Authorization': "Bearer #{bearer}"}
-    end
+    end if bearer
 
     #search widget
     (url = url + "&term=#{term}") if term
