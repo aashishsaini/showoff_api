@@ -1,0 +1,37 @@
+<%= render 'user_info' %>
+<h1 class="text-center">Widgets</h1>
+<%= render 'search_widget' %>
+<table class="table table-striped">
+  <thead>
+    <td>ID</td>
+    <td>Name</td>
+    <td>Description</td>
+    <td>
+      <%= params[:id] == 'me'  ? 'Action' : 'User' %>
+    </td>
+  </thead>
+  <tbody>
+  <% @widgets.each do |widget| %>
+    <tr>
+      <td><%= widget['id'] %></td>
+      <td><%= widget['name'] %></td>
+      <td><%= widget['description'] %></td>
+      <td>
+        <% if current_user %>
+          <% if params[:id] == 'me' %>
+            <%= link_to 'Edit' , edit_widget_path(widget['id'])%> |
+            <%= link_to 'Destroy' , widget_path(widget['id']), data: {confirm: 'Are you Sure?'}, method: :delete %>
+          <% else %>
+            <%= link_to "#{widget['user']['name']}", user_widgets_path(id: widget['user']['id'] ) %>
+          <% end %>
+        <% else %>
+          <%= widget['user']['name'] %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% if params[:id] == 'me' && current_user %>
+  <%= link_to 'Create New Widget', new_widget_path, class: 'btn btn-primary' %>
+<% end %>

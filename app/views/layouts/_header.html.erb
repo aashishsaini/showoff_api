@@ -1,0 +1,11 @@
+<div class="pull-right" id="user_info">
+  <% if is_logged_in?  %>
+    Welcome <%= session[:user]['name'] %> |
+    <%= link_to 'All Widgets', widgets_path, class: 'btn btn-info' %> |
+    <%= link_to 'My Widgets', my_widgets_path(id: 'me'), class: 'btn btn-info' %> |
+    <%= link_to 'Logout', user_path(session[:user]['id']) , method: :delete, class: 'btn btn-danger', remote: true %>
+  <% else %>
+    <%= link_to 'Login', login_users_path, class: 'btn btn-info', remote: true %> |
+    <%= link_to 'Register', sign_up_users_path, class: 'btn btn-info', remote: true %>
+  <% end %>&nbsp;&nbsp;
+</div>

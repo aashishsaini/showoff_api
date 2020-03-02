@@ -1,0 +1,11 @@
+<% if params[:id] && params[:id] != 'me' %>
+  <% @user = @widgets.first['user'] %>
+  <h1 class="text-center">User Info</h1>
+  <div class="text-center">
+    <%= image_tag @user['images']['small_url'] %>
+    <br/>
+    <%= label_tag 'Id' %>: <%= @user['id'] %>
+    <br/>
+    <%= label_tag 'Name' %>: <%= @user['name'].humanize %>
+  </div>
+<% end %>

@@ -1,0 +1,5 @@
+<%= form_tag '', url: widgets_path, method:  :get do %>
+  <%= text_field_tag :term , params[:term], class: 'form-group' %>
+  <%= submit_tag 'Search Widget', class: 'btn btn-primary' %> |
+  <%= link_to 'Reset Search', root_url %>
+<% end %>
